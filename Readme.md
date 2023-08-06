@@ -48,7 +48,7 @@
   Before running any script or command from an external source, always review the code to ensure it doesn't contain any malicious content and comes from a trusted source. Additionally, take proper backups of your important data and configurations before proceeding with such operations.
 
 # Contributing
-If you'd like to contribute to this project, please read [Cotribution.md]("/Contribution.md") file.
+If you'd like to contribute to this project, please read [Cotribution.md](/Contribution.md) file.
 
 If you encounter any issues on the script, Please Mentioned it in issue section.
 
