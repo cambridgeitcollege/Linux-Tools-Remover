@@ -27,22 +27,48 @@ packages=(
     minicom netcat-traditional python3-scapy tcpdump webshells
 )
 
+
+
+
+# Define ASCII art for "CAMBRIDGE"
+ascii_art="
+  _______  _______  _______  ______   _______ _________ ______   _______  _______ 
+ (  ____ \(  ___  )(       )(  ___ \ (  ____ )\__   __/(  __  \ (  ____ \(  ____ \
+ | (    \/| (   ) || () () || (   ) )| (    )|   ) (   | (  \  )| (    \/| (    \/
+ | |      | (___) || || || || (__/ / | (____)|   | |   | |   ) || |      | (__    
+ | |      |  ___  || |(_)| ||  __ (  |     __)   | |   | |   | || | ____ |  __)   
+ | |      | (   ) || |   | || (  \ \ | (\ (      | |   | |   ) || | \_  )| (      
+ | (____/\| )   ( || )   ( || )___) )| ) \ \_____) (___| (__/  )| (___) || (____/\
+ (_______/|/     \||/     \||/ \___/ |/   \__/\_______/(______/ (_______)(_______/
+"
+
+# Print the ASCII art
+echo "$ascii_art"
+
+
 # Function to remove packages
 remove_packages() {
     for package in "${packages[@]}"; do
+        echo "Removing: $package"
         sudo apt remove -y "$package"
     done
 }
 
-# Remove packages and clean up
-remove_packages
-sudo apt autoclean 
-sudo apt autoremove
-sudo apt update
+# Display the list of tools to be removed
+echo "The following tools will be removed:"
+for package in "${packages[@]}"; do
+    echo "$package"
+done
 
-# Uncomment the following line if you want to remove configurations of all removed packages
-# dpkg -l | grep '^rc' | awk '{print $2}' | sudo xargs dpkg --purge
-
-echo "Script has been Executed Successfully"
-echo "All the Listed tools from the Linux has been removed Successfully"
-echo "Thanks for using this Script"
+# Ask user for confirmation
+read -p "This script will remove Above Mentioned tools from your system(if it is available). Do you want to continue? (y/n): " confirm
+if [[ $confirm =~ ^[Yy]$ ]]; then
+    remove_packages
+    sudo apt autoclean 
+    sudo apt autoremove
+    sudo apt update
+    echo "All the listed tools have been removed successfully."
+    echo "Thanks for using this script."
+else
+    echo "Operation cancelled. No tools were removed."
+fi
