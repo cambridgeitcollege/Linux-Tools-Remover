@@ -42,7 +42,7 @@ for package in "${packages[@]}"; do
 done
 
 # Ask user for confirmation
-read -p "This script will remove multiple tools from your system. Do you want to continue? (y/n): " confirm
+read -p "This script will remove Above Mentioned tools from your system(if it is available). Do you want to continue? (y/n): " confirm
 if [[ $confirm =~ ^[Yy]$ ]]; then
     remove_packages
     sudo apt autoclean 
